@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 from rest_framework.fields import DateTimeField
 from .models import Dealer
 
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name']
+        ref_name = "DealersUser"
 
 
 class DealerSerializer(serializers.ModelSerializer):

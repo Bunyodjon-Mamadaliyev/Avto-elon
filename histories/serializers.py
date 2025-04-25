@@ -1,10 +1,4 @@
 from rest_framework import serializers
-from common.models import Make, CarModel
-from listings.models import Listing
-from histories.models import PriceHistory
-from django.db.models import Avg, Min, Max, Count
-from datetime import datetime, timedelta
-from django.utils import timezone
 
 class PriceDistributionSerializer(serializers.Serializer):
     range = serializers.CharField()

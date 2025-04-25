@@ -5,28 +5,21 @@ from dealers.models import Dealer
 from common.models import CarModel
 from cars.models import Car
 
-
-# Make va Model serializerlari
 class MakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Make
         fields = ['id', 'name']
-
 
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ['id', 'name']
 
-
-# BodyType serializer
 class BodyTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = BodyType
         fields = ['id', 'name']
 
-
-# Car serializer
 class CarSerializer(serializers.ModelSerializer):
     make = MakeSerializer()
     model = ModelSerializer()
@@ -40,8 +33,6 @@ class CarSerializer(serializers.ModelSerializer):
             'engine_size', 'power', 'drive_type'
         ]
 
-
-# Listing serializer
 class ListingSerializer(serializers.ModelSerializer):
     car = CarSerializer()
     primary_image = serializers.SerializerMethodField()
@@ -59,24 +50,18 @@ class ListingSerializer(serializers.ModelSerializer):
             return obj.primary_image.url
         return None
 
-
-# Similar listing serializer (listing + similarity score)
 class SimilarListingSerializer(ListingSerializer):
     similarity_score = serializers.FloatField()
 
     class Meta(ListingSerializer.Meta):
         fields = ListingSerializer.Meta.fields + ['similarity_score']
 
-
-# Dealer user serializer
 class UserShortSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     username = serializers.CharField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
 
-
-# Dealer serializer
 class DealerSerializer(serializers.ModelSerializer):
     user = UserShortSerializer()
     class Meta:

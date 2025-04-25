@@ -1,10 +1,5 @@
 from django.urls import path
-from .views import (
-    ListingSearchView,
-    DealerSearchView,
-    CarSearchView,
-    SimilarListingsView
-)
+from .views import ListingSearchView, DealerSearchView, CarSearchView, SimilarListingsView
 
 urlpatterns = [
     path('listings/', ListingSearchView.as_view(), name='search-listings'),

@@ -7,7 +7,6 @@ class UserProfile(models.Model):
         ('regular', 'Oddiy foydalanuvchi'),
         ('dealer', 'Diler'),
     ]
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='regular')
     phone = models.CharField(max_length=20)

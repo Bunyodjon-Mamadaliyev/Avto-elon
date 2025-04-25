@@ -4,13 +4,10 @@ from django.shortcuts import get_object_or_404
 from listings.models import Listing, Image
 from rest_framework.decorators import action
 from django.contrib.auth import get_user_model
-from listings.serializers import (
-    ListingSerializer, ListingCreateSerializer,
-    ImageSerializer, ImageCreateSerializer
-)
+from listings.serializers import (ListingSerializer, ListingCreateSerializer,
+                        ImageSerializer, ImageCreateSerializer)
 
 User = get_user_model()
-
 
 class ListingViewSet(viewsets.ModelViewSet):
     queryset = Listing.objects.select_related(

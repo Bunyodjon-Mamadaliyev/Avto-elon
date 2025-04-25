@@ -21,6 +21,7 @@ class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ['id', 'name', 'make']
+        ref_name = "CommonCarModel"
 
 
 class BodyTypeSerializer(serializers.ModelSerializer):

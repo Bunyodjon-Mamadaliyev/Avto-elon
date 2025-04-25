@@ -9,17 +9,14 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from cars.models import Make, CarModel
 from listings.models import Listing
-from histories.models import PriceHistory
 from .serializers import ( PriceAnalyticsSerializer, MakePriceAnalyticsSerializer,
                            PriceEstimateSerializer, MarketTrendsSerializer)
-
 
 class PriceAnalyticsView(APIView):
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request):
         cache_key = 'overall_price_stats'
         data = cache.get(cache_key)
-
         if not data:
             active_listings = Listing.objects.filter(is_active=True)
             if not active_listings.exists():

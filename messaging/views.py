@@ -5,7 +5,6 @@ from listings.models import Listing
 from .models import Message
 from .serializers import MessageSerializer
 
-
 class MessageListCreateView(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
@@ -19,7 +18,6 @@ class MessageListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(sender=self.request.user)
 
-
 class MessageDetailView(generics.RetrieveDestroyAPIView):
     serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -28,7 +26,6 @@ class MessageDetailView(generics.RetrieveDestroyAPIView):
         return Message.objects.filter(
             models.Q(sender=self.request.user) |
             models.Q(receiver=self.request.user))
-
 
 class ConversationListView(generics.ListAPIView):
     serializer_class = MessageSerializer
@@ -39,7 +36,6 @@ class ConversationListView(generics.ListAPIView):
             models.Q(sender=self.request.user) |
             models.Q(receiver=self.request.user)
         ).distinct().order_by('-created_at')
-
 
 class UserConversationView(generics.ListAPIView):
     serializer_class = MessageSerializer

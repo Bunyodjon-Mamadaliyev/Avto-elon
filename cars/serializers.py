@@ -13,12 +13,14 @@ class MakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Make
         fields = ['id', 'name', 'country']
+        ref_name = "CarsMake"
 
 
 class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ['id', 'name']
+        ref_name = "CarsCarModel"
 
 
 class BodyTypeSerializer(serializers.ModelSerializer):
@@ -45,6 +47,7 @@ class CarSerializer(serializers.ModelSerializer):
                   'body_type_id', 'fuel_type', 'transmission', 'color', 'mileage',
                   'engine_size', 'power', 'drive_type', 'features', 'feature_ids',
                   'vin', 'created_at', 'updated_at', 'owner']
+        ref_name = "CarsCarSerializer"
         read_only_fields = ['created_at', 'updated_at', 'owner']
         extra_kwargs = {
             'vin': {'validators': []}

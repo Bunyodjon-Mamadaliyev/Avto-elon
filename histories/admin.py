@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import PriceHistory
 
-
 @admin.register(PriceHistory)
 class PriceHistoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'listing_title', 'price', 'currency', 'created_at')

@@ -5,7 +5,6 @@ from cars.models import Car
 from django.core.exceptions import ValidationError
 
 class CarModelTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpass')
         self.make = Make.objects.create(name='Toyota')

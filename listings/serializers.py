@@ -9,19 +9,17 @@ class MakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Make
         fields = ['id', 'name']
-
+        ref_name = "ListingsMake"
 
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarModel
         fields = ['id', 'name']
 
-
 class BodyTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = BodyType
         fields = ['id', 'name']
-
 
 class CarSerializer(serializers.ModelSerializer):
     make = MakeSerializer()
@@ -32,7 +30,7 @@ class CarSerializer(serializers.ModelSerializer):
         model = Car
         fields = ['id', 'make', 'model', 'year', 'body_type',
                   'fuel_type', 'transmission', 'color', 'mileage']
-
+        ref_name = "ListingsCarSerializer"
 
 class UserSerializer(serializers.ModelSerializer):
     user_type = serializers.SerializerMethodField()
@@ -40,6 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'user_type']
+        ref_name = "ListingsUser"
 
     def get_user_type(self, obj):
         if hasattr(obj, 'dealer_profile'):

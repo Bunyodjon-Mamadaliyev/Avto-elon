@@ -5,18 +5,15 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
 class SUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name']
 
-
 class SListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
         fields = ['id', 'title']
-
 
 class MessageSerializer(serializers.ModelSerializer):
     sender = SUserSerializer(read_only=True)

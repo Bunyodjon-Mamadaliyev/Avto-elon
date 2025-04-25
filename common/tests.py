@@ -4,7 +4,6 @@ from common.models import Make, CarModel, BodyType, Feature
 
 
 class MakeModelTest(TestCase):
-
     def test_create_make(self):
         make = Make.objects.create(name="Toyota", country="Japan", logo="make_logos/toyota.png")
         self.assertEqual(make.name, "Toyota")
@@ -12,7 +11,6 @@ class MakeModelTest(TestCase):
 
 
 class CarModelTest(TestCase):
-
     def setUp(self):
         self.make = Make.objects.create(name="Honda", country="Japan", logo="make_logos/honda.png")
 
@@ -24,7 +22,6 @@ class CarModelTest(TestCase):
 
 
 class BodyTypeTest(TestCase):
-
     def test_create_body_type(self):
         body_type = BodyType.objects.create(name="Sedan", image="body_types/sedan.png")
         self.assertEqual(body_type.name, "Sedan")
@@ -32,7 +29,6 @@ class BodyTypeTest(TestCase):
 
 
 class FeatureTest(TestCase):
-
     def test_create_feature(self):
         feature = Feature.objects.create(name="Sunroof", category="exterior")
         self.assertEqual(feature.name, "Sunroof")

@@ -4,12 +4,10 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserProfile
 
-
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ['user_type', 'phone', 'avatar', 'location', 'rating']
-
 
 class UserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer()
@@ -20,7 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
-
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -48,12 +45,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
-
         UserProfile.objects.create(
             user=user,
             user_type=user_type
         )
-
         return user
 
 

@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from common.models import Make, CarModel, BodyType, Feature
 
-
 class Car(models.Model):
     FUEL_TYPE_CHOICES = [
         ('petrol', 'Benzin'),
@@ -11,13 +10,11 @@ class Car(models.Model):
         ('electric', 'Elektro'),
         ('lpg', 'Gaz'),
     ]
-
     TRANSMISSION_CHOICES = [
         ('manual', 'Mexanika'),
         ('automatic', 'Avtomat'),
         ('semi-auto', 'Yarim avtomat'),
     ]
-
     DRIVE_TYPE_CHOICES = [
         ('fwd', 'Old g\'ildirak'),
         ('rwd', 'Orqa g\'ildirak'),
@@ -31,9 +28,9 @@ class Car(models.Model):
     fuel_type = models.CharField(max_length=10, choices=FUEL_TYPE_CHOICES)
     transmission = models.CharField(max_length=10, choices=TRANSMISSION_CHOICES)
     color = models.CharField(max_length=50)
-    mileage = models.PositiveIntegerField()
-    engine_size = models.FloatField()
-    power = models.PositiveIntegerField()
+    mileage = models.IntegerField(default=0)
+    engine_size = models.FloatField(default=2.0)
+    power = models.IntegerField(default=100)
     drive_type = models.CharField(max_length=5, choices=DRIVE_TYPE_CHOICES)
     features = models.ManyToManyField(Feature, blank=True)
     vin = models.CharField(max_length=17, unique=True)

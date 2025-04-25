@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from cars.models import Car
 
-
 def get_default_owner():
     user = User.objects.first()
     return user.id if user else None
@@ -22,10 +21,9 @@ class Listing(models.Model):
         ('new', 'Yangi'),
         ('used', 'Ishlatilgan'),
     ]
-
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='listings')
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listings')
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_owner)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=get_default_owner, related_name='listings_as_owner')
     primary_image = models.ImageField(upload_to='images/', default='default_listing.jpg')
     title = models.CharField(max_length=200)
     description = models.TextField()

@@ -3,10 +3,8 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
-from .models import UserProfile
 
 User = get_user_model()
-
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -41,6 +39,7 @@ class LoginView(generics.GenericAPIView):
 
 
 class LogoutView(generics.GenericAPIView):
+    swagger_schema = None
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, *args, **kwargs):

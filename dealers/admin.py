@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Dealer
 
-
 @admin.register(Dealer)
 class DealerAdmin(admin.ModelAdmin):
     list_display = ('id', 'company_name', 'user', 'is_verified', 'rating', 'created_at')

@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import (
-    SavedListingListCreateView, SavedListingDeleteView,
+from .views import (SavedListingListCreateView, SavedListingDeleteView,
     ComparisonListListCreateView, ComparisonListAddView, ComparisonListRemoveView
 )
 

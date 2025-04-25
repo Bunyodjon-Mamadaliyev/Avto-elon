@@ -8,13 +8,11 @@ from listings.serializers import ListingSerializer
 from search.serializers import SimilarListingSerializer, DealerSerializer, CarSerializer
 from listings.utils import get_similar_listings
 
-# /api/search/listings/
 class ListingSearchView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
         listings = Listing.objects.all()
-
         make = request.GET.get('make')
         model = request.GET.get('model')
         min_price = request.GET.get('min_price')
@@ -31,12 +29,9 @@ class ListingSearchView(APIView):
             listings = listings.filter(price__lte=max_price)
         if location:
             listings = listings.filter(location__icontains=location)
-
         serializer = ListingSerializer(listings, many=True, context={'request': request})
         return Response(serializer.data)
 
-
-# /api/search/dealers/
 class DealerSearchView(APIView):
     permission_classes = [AllowAny]
 
@@ -54,7 +49,6 @@ class DealerSearchView(APIView):
         return Response(serializer.data)
 
 
-# /api/search/cars/
 class CarSearchView(APIView):
     permission_classes = [AllowAny]
 
@@ -75,13 +69,12 @@ class CarSearchView(APIView):
         return Response(serializer.data)
 
 
-# /api/search/similar/{listing_id}/
 class SimilarListingsView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, listing_id):
         base_listing = get_object_or_404(Listing, id=listing_id)
-        similar_listings = get_similar_listings(base_listing)  # bu sizning logikangiz asosida yoziladi
+        similar_listings = get_similar_listings(base_listing)
 
         serializer = SimilarListingSerializer(similar_listings, many=True, context={'request': request})
         return Response(serializer.data)

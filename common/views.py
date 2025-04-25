@@ -1,8 +1,8 @@
 from rest_framework import generics
 from .models import Make, CarModel, BodyType, Feature
-from .serializers import MakeSerializer, CarModelSerializer, BodyTypeSerializer, FeatureSerializer
 from django.shortcuts import get_object_or_404
-
+from .serializers import (MakeSerializer, CarModelSerializer,
+                          BodyTypeSerializer, FeatureSerializer)
 
 class MakeListView(generics.ListAPIView):
     queryset = Make.objects.all()

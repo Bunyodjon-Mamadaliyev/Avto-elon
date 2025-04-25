@@ -1,10 +1,5 @@
 from django.urls import path
-from .views import (
-    DealerListView,
-    DealerDetailView,
-    DealerListingsView,
-    DealerReviewsView
-)
+from .views import DealerListView, DealerDetailView, DealerListingsView, DealerReviewsView
 
 urlpatterns = [
     path('dealers/', DealerListView.as_view(), name='dealer-list'),
